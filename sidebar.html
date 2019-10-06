@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <style>
+      body {
+        background-color: #525252;
+        background-image: linear-gradient(to right, #525252, #d6d6d6, #525252);
+        font-family: Roboto;
+        color: #131b21;
+      }
+      .action-group {
+        padding: 2rem 2rem;
+        border-bottom: 1px solid #242a2e;
+        border-bottom-color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        margin: auto;
+      }
+      
+      #course-summary, #course-details {
+         margin-left: auto;
+         margin-right: auto;
+      }
+      
+      #status-space {
+        padding: 1rem 1rem;
+        text-align: center;
+        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: 1rem;
+        background-color: #f5f3c6;
+        border: 1px solid #b5b391;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    
+  </head>
+  <body>
+    <div class="action-group"> 
+      <h2> Course Summary Spreadsheet </h2>
+      <form>
+        <button class="red" id="course-summary"> Generate </button> 
+        <button class="gray" id="delete-course-sheet"> Delete </button> 
+      </form>
+    </div>
+     <div class="action-group"> 
+      <h2> Individual Course Spreadsheets </h2>
+      <form>
+        <button class="red" id="course-details"> Generate </button> 
+        <button class="gray" id="delete-individual-sheet"> Delete </button> 
+      </form>
+    </div>
+    <div id="status-space" class="bottom">  </div>
+   <script>
+     $(function() {
+       $('#course-summary').click(getCourseSummary);
+       $('#course-details').click(getCourseDetails);
+       $('#delete-individual-sheet').click(deleteIndividual);
+       $('#delete-course-sheet').click(deleteSummary);
+     });
+     
+     function getCourseSummary() {
+       showStatus("Generating course summary sheet...");
+       this.disabled = true;
+       google.script.run
+         .withSuccessHandler(
+           function(returnValue, element) {
+             showStatus(returnValue);
+             element.disabled = false;
+     
+         })
+       .withFailureHandler(
+         function(errorMsg, element) {
+           showStatus(errorMsg);
+           element.disabled = false;
+       })
+     .withUserObject(this)
+     .populateCourseSummary();
+     }
+     
+     function getCourseDetails() {
+       showStatus("Generating individual course sheets...");
+       this.disabled = true;
+       google.script.run
+         .withSuccessHandler(
+           function(returnValue, element) {
+             showStatus(returnValue);
+             element.disabled = false;
+     
+         })
+       .withFailureHandler(
+         function(errorMsg, element) {
+           showStatus(errorMsg);
+           element.disabled = false;
+       })
+     .withUserObject(this)
+     .populateCourseDetails();
+     }
+     
+     function deleteIndividual() {
+       showStatus("Deleting individual course sheets...");
+       this.disabled = true;
+       google.script.run
+         .withSuccessHandler(
+           function(returnValue, element) {
+             showStatus(returnValue);
+             element.disabled = false;
+     
+         })
+       .withFailureHandler(
+         function(errorMsg, element) {
+           showStatus(errorMsg);
+           element.disabled = false;
+       })
+     .withUserObject(this)
+     .deleteIndividualSheets();
+     }
+     
+     function deleteSummary() {
+       showStatus("Deleting course summary sheet...");
+       this.disabled = true;
+       google.script.run
+         .withSuccessHandler(
+           function(returnValue, element) {
+             showStatus(returnValue);
+             element.disabled = false;
+     
+         })
+       .withFailureHandler(
+         function(errorMsg, element) {
+           showStatus(errorMsg);
+           element.disabled = false;
+       })
+     .withUserObject(this)
+     .deleteCourseSummarySheet();
+     }
+     
+     function showStatus(statusMsg) {
+       $('#status-space').html(statusMsg);
+     }
+     
+  </script>
+  </body>
+ 
+</html>
+
+
