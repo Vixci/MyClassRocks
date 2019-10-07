@@ -1,4 +1,4 @@
-#MyClassRocks
+# MyClassRocks
 My Class Rocks allows to create aggregated views containing stats and charts from the classroom data. 
 These views are useful to get an overview at a glance of  the teacher’s courses, course work, grades and aggregated stats. Most of these stats and charts are not surfaced in the Classroom UI, so they can add value for teachers who are tracking these metrics.
 The add-on has two main functions:
@@ -13,7 +13,7 @@ For each of the courses in the teacher’s classroom, a new sheet with the same 
 ## Bulk deletion of the previously inserted sheets. 
 The add on provides 2 buttons that deletes in bulk the course summary sheet or the individual course sheets that were added via the add on. Note that sheets are identified by name. If you changed the name in the meantime, they would have to be deleted manually.
 
-#Scopes
+## Scopes
 My Class Rocks uses	https://www.googleapis.com/auth/spreadsheets to  edit, create, and delete spreadsheets in Google Drive. This is essential for the app’s purpose.
 
 It uses https://www.googleapis.com/auth/classroom.courses to access the courses in which the current user is a teacher. It needs to display the course names in a spreadsheet, as well as stats about the course.
